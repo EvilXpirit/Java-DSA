@@ -42,6 +42,7 @@ public class Hashmap {
             return -1;
         }
 
+//        @SuppressWarnings("unchecked")
         private void rehash(){
             Linkedlist<Node> oldBucket[] = buckets; //This line creates a reference oldBucket that points to the current array of buckets.
             // This is done so that you can access the old data while creating a new, larger array.
@@ -58,6 +59,28 @@ public class Hashmap {
                 }
             }
         }
+
+        public void put(k key, v value) {
+            int bi = hashFunction(key); //This line calculates the bucket index (bi) where the key-value pair should be placed based on the
+            // hash code of the key. The hashFunction method determines the appropriate bucket based on the key's hash code.
+            int di = searchInAll(key, bi); //This line calls the searchInLL method to search for the key within the linked list (bucket)
+            // determined by the bucket index (bi). If the key is found, di will be set to the index where it's found in the linked list; otherwise, di will be -1.
+
+            if(di == -1){
+                buckets[bi].add(new Node(key, value));
+                n++;
+            }
+            else{
+                Node newNode = buckets[bi].get(di);
+                newNode.value = value;
+            }
+
+            double lambda = (double)n/N;
+            if(lambda > 2.0){
+                rehash();
+            }
+        }
+
 
 
     }
