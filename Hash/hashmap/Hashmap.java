@@ -81,6 +81,27 @@ public class Hashmap {
             }
         }
 
+        public boolean containsKey(k key, v value){
+            int bi = hashFunction(key);
+            int di = searchInAll(key, bi);
+
+            if(di == -1) return false;
+            else return true;
+        }
+
+        public v remove(k key, v value){
+            int bi = hashFunction(key);
+            int di = searchInAll(key, bi);
+
+            if(di == -1) return null;
+            else{
+                Node removedNode = buckets[bi].remove(di);
+                n--;
+                return removedNode.value;
+            }
+        }
+
+
 
 
     }
