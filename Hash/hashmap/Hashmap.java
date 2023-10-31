@@ -82,7 +82,7 @@ public class Hashmap {
             }
         }
 
-        public boolean containsKey(k key, v value){
+        public boolean containsKey(k key){
             int bi = hashFunction(key);
             int di = searchInAll(key, bi);
 
@@ -90,7 +90,7 @@ public class Hashmap {
             else return true;
         }
 
-        public v remove(k key, v value){
+        public v remove(k key){
             int bi = hashFunction(key);
             int di = searchInAll(key, bi);
 
@@ -117,17 +117,13 @@ public class Hashmap {
             ArrayList<k> keys = new ArrayList<>();
             for(int i = 0; i< buckets.length; i++){
                 LinkedList<Node> ll = buckets[i];
-                for(int j = 0; j == ll.size(); j++){
+                for(int j = 0; j < ll.size(); j++){
                     Node node = ll.get(j);
                     keys.add(node.key);
                 }
             }
             return keys;
         }
-
-
-
-
 
     }
 }
