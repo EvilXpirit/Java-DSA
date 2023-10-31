@@ -16,7 +16,7 @@ public class Hashmap {
         private int N; //N - buckets
         private LinkedList<Node> buckets[]; //N = buckets.length
 
-//        @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")
         public HashMap() {
             this.N = 4;
             this.buckets = new LinkedList[4]; //his line initializes the buckets array. It creates an array that will store linked lists
@@ -42,7 +42,7 @@ public class Hashmap {
             return -1;
         }
 
-//        @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")
         private void rehash(){
             LinkedList<Node> oldBucket[] = buckets; //This line creates a reference oldBucket that points to the current array of buckets.
             // This is done so that you can access the old data while creating a new, larger array.
@@ -56,6 +56,7 @@ public class Hashmap {
                 for(int j = 0; j<ll.size(); j++){
                     Node node = ll.get(j);
                     put(node.key, node.value);
+//                    put(ll.get(j).key, ll.get(j).value);  this will also give same results
                 }
             }
         }
@@ -100,6 +101,30 @@ public class Hashmap {
                 return removedNode.value;
             }
         }
+
+        public v get(k key) {
+            int bi = hashFunction(key);
+            int di = searchInAll(key, bi);
+            if(di == -1) return null;
+            else{
+                Node node = buckets[bi].get(di);
+                return node.value;
+            }
+        }
+        public ArrayList<k> keySet(){
+            //This method is declared to return an ArrayList containing keys of type K.
+            // It will return a list of all the keys in the hash map.
+            ArrayList<k> keys = new ArrayList<>();
+            for(int i = 0; i< buckets.length; i++){
+                LinkedList<Node> ll = buckets[i];
+                for(int j = 0; j == ll.size(); j++){
+                    Node node = ll.get(j);
+                    keys.add(node.key);
+                }
+            }
+            return keys;
+        }
+
 
 
 
