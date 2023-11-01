@@ -4,6 +4,7 @@ import java.util.*;
 public class Hashmap {
     static class HashMap<k,v>{
         private class Node{
+            //This Node class is used to encapsulate the key-value pairs. Each node holds a key and its associated value.
             k key;
             v value;
             public Node(k key, v value){
@@ -15,6 +16,7 @@ public class Hashmap {
         private int n; //n - nodes
         private int N; //N - buckets
         private LinkedList<Node> buckets[]; //N = buckets.length
+        //eclares an array of linked lists as a private instance variable within the HashMap class.
 
         @SuppressWarnings("unchecked")
         public HashMap() {
@@ -29,6 +31,7 @@ public class Hashmap {
         private int hashFunction(k key){
             int bi = key.hashCode();
             return Math.abs(bi) % N;
+            // this returns the bucket index which in the
         }
 
         private int searchInAll(k key, int bi){
